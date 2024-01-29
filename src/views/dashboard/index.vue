@@ -1,0 +1,7 @@
+<script lang="ts" setup>
+
+</script>
+
+<template>
+  <div>首页内容</div>
+</template>

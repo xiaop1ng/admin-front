@@ -10,9 +10,7 @@ const pageVo = ref({
 })
 
 function footerMethod({$table}) {
-  const args = arguments
-  console.info("args", args)
-  let row = $table.$attrs.row
+  let row = $table.context.attrs.row
   return [
       [
         '','','','','合计',

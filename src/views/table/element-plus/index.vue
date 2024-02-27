@@ -10,10 +10,7 @@ const pageVo = ref({
 })
 
 function footerMethod({$table}) {
-  const args = arguments
-  console.info("args", args)
-  console.info("table",  $table.useAttrs() )
-  let row = $table.$attrs.row
+  let row = $table.context.attrs.row
   return [
       [
         '','','','','合计',
@@ -74,7 +71,6 @@ watch(pageVo, (n, o) => {
               :row-config="{isHover: true}"
               :footer-method="footerMethod"
               :row="row"
-              
               :data="row.ticketDetailVoList">
               <vxe-column field="productSn" title="产品号"></vxe-column>
               <vxe-column field="planNumber" title="计划数量"></vxe-column>

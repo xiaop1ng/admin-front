@@ -40,7 +40,8 @@ const handleLogin = () => {
         .then(() => {
           router.push({ path: "/" })
         })
-        .catch(() => {
+        .catch((e) => {
+          console.info("login ex:", e)
           loginFormData.password = ""
         })
         .finally(() => {

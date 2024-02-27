@@ -3,6 +3,7 @@ import { useUserStoreHook } from "@/store/modules/user"
 import { ElMessage } from "element-plus"
 import { get, merge } from "lodash-es"
 import { getToken } from "./cache/cookies"
+import qs from 'qs'
 
 /** 退出登录并强制刷新页面（会重定向到登录页） */
 function logout() {
@@ -29,7 +30,7 @@ function createService() {
       const responseType = response.request?.responseType
       if (responseType === "blob" || responseType === "arraybuffer") return apiData
       // 这个 code 是和后端约定的业务 code
-      const code = apiData.code
+      const code = apiData.err
       // 如果没有 code, 代表这不是项目后端开发的 api
       if (code === undefined) {
         ElMessage.error("非本系统的接口")
@@ -101,12 +102,16 @@ function createRequest(service: AxiosInstance) {
   return function <T>(config: AxiosRequestConfig): Promise<T> {
     const token = getToken()
     const defaultConfig = {
-      headers: {
-        // 携带 Token
-        Authorization: token ? `Bearer ${token}` : undefined,
-        "Content-Type": "application/json"
-      },
-      timeout: 5000,
+      // headers: {
+      //   // 携带 Token
+      //   Authorization: token ? `Bearer ${token}` : undefined,
+      //   "Content-Type": "application/json"
+      // },
+      dataType: 'json',
+      timeout: 60 * 1000 * 60 * 5, // 五个小时
+      transformRequest: [function (data: any) {
+        return qs.stringify(data)
+      }],
       baseURL: import.meta.env.VITE_BASE_API,
       data: {}
     }

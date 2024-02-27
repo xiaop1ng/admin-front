@@ -30,8 +30,8 @@ export function updateTableDataApi(data: Table.CreateOrUpdateTableRequestData) {
 /** 查 */
 export function getTableDataApi(params: Table.GetTableRequestData) {
   return request<Table.GetTableResponseData>({
-    url: "table",
-    method: "get",
+    url: "/deviceStatistics/list",
+    method: "post",
     params
   })
 }

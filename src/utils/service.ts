@@ -107,6 +107,8 @@ function createRequest(service: AxiosInstance) {
       //   Authorization: token ? `Bearer ${token}` : undefined,
       //   "Content-Type": "application/json"
       // },
+      // 重点处：开启第三方 Cookie 
+		  withCredentials: true,
       dataType: 'json',
       timeout: 60 * 1000 * 60 * 5, // 五个小时
       transformRequest: [function (data: any) {

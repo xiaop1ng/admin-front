@@ -19,7 +19,7 @@ const codeUrl = ref("")
 /** 登录表单数据 */
 const loginFormData: LoginRequestData = reactive({
   username: "admin",
-  password: "12345678"
+  password: "123456"
 })
 const title = import.meta.env.VITE_APP_TITLE
 /** 登录表单校验规则 */

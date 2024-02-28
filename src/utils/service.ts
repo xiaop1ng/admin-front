@@ -43,6 +43,8 @@ function createService() {
         case 401:
           // Token 过期时
           return logout()
+        case -443:
+          return logout()
         default:
           // 不是正确的 code
           ElMessage.error(apiData.message || "Error")
